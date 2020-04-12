@@ -16,6 +16,7 @@
 		1D4D29CC244393DF00EDFA20 /* calculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D29CB244393DF00EDFA20 /* calculatorTests.swift */; };
 		1D4D29DB24439B7F00EDFA20 /* VC+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D29DA24439B7F00EDFA20 /* VC+Constraints.swift */; };
 		1D4D29DD2443A90400EDFA20 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D29DC2443A90400EDFA20 /* Styling.swift */; };
+		1D4D29DF2443D2B300EDFA20 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D29DE2443D2B300EDFA20 /* Operations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		1D4D29CD244393DF00EDFA20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4D29DA24439B7F00EDFA20 /* VC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+Constraints.swift"; sourceTree = "<group>"; };
 		1D4D29DC2443A90400EDFA20 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
+		1D4D29DE2443D2B300EDFA20 /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				1D4D29DC2443A90400EDFA20 /* Styling.swift */,
+				1D4D29DE2443D2B300EDFA20 /* Operations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				1D4D29DD2443A90400EDFA20 /* Styling.swift in Sources */,
 				1D4D29B9244393DA00EDFA20 /* ViewController.swift in Sources */,
 				1D4D29B5244393DA00EDFA20 /* AppDelegate.swift in Sources */,
+				1D4D29DF2443D2B300EDFA20 /* Operations.swift in Sources */,
 				1D4D29B7244393DA00EDFA20 /* SceneDelegate.swift in Sources */,
 				1D4D29DB24439B7F00EDFA20 /* VC+Constraints.swift in Sources */,
 			);

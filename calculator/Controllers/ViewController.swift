@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: IBOUTLETs
     @IBOutlet weak var terminalView: UIView!
     @IBOutlet weak var answerLabel: UILabel!
     
@@ -35,6 +36,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var equalsButton: UIButton!
     
     
+    //MARK: Properties
+    var operation: Operations = .none
+    
+    //MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpConstraints()
@@ -43,6 +48,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //MARK: Functions
     func setUpButtonStyles() {
         Styling.styleNumberButton(button: sevenButton, symbol: "7")
         Styling.styleNumberButton(button: eightButton, symbol: "8")
@@ -72,6 +78,13 @@ class ViewController: UIViewController {
         Styling.styleOperationButtons(button: equalsButton, symbol: "=")
     
     }
+    
+    //MARK: OBJC Functions
+    
+    @objc func numberPadPressed(_ sender: UIButton) {
+        
+    }
+    
     
     
     
