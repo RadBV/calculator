@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         percentButton.addTarget(self, action: #selector(operationsPressed(_:)), for: .touchUpInside)
         
         equalsButton.addTarget(self, action: #selector(equalsButtonPressed), for: .touchUpInside)
+        acButton.addTarget(self, action: #selector(acPressed), for: .touchUpInside)
     }
     
     func setUpSenders() {
@@ -121,7 +122,7 @@ class ViewController: UIViewController {
     func calculate() {
         let arr = answerLabel.text!.components(separatedBy: " ")
         var newArr: [Any] = []
-        var answer = 0.0
+        var answer = 0
         
         for i in arr {
             guard let num = Int(i) else {
@@ -130,6 +131,7 @@ class ViewController: UIViewController {
             }
             newArr.append(num)
         }
+        print(newArr)
         
         for i in newArr {
             
@@ -147,7 +149,7 @@ class ViewController: UIViewController {
                 }
             }
             
-            if let intI = i as? Double {
+            if let intI = i as? Int {
                 if operation == .none {
                     answer = intI
                 } else if operation == .add {
@@ -158,14 +160,16 @@ class ViewController: UIViewController {
                     answer = answer / intI
                 } else if operation == .multiply {
                     answer = answer * intI
+                } else if operation == .percent {
+                    answer = answer % intI
                 }
             }
-            
             
             
         }
         
         answerLabel.text = String(answer)
+        operation = .none
         
     }
     
@@ -194,7 +198,9 @@ class ViewController: UIViewController {
         calculate()
     }
     
-    
+    @objc func acPressed() {
+        answerLabel.text = ""
+    }
     
     
     
