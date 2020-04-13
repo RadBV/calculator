@@ -38,17 +38,56 @@ class ViewController: UIViewController {
     
     //MARK: Properties
     var operation: Operations = .none
+    var currentNumber = 0
+    var prevNumber = 0
     
     //MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpConstraints()
         setUpButtonStyles()
+        setUpSenders()
+        setUpFunctions()
         answerLabel.textAlignment = .right
-        // Do any additional setup after loading the view.
+        
     }
     
     //MARK: Functions
+    
+    func setUpFunctions() {
+        zeroButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        oneButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        twoButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        threeButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        fourButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        fiveButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        sixButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        sevenButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        eightButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        nineButton.addTarget(self, action: #selector(numberPadPressed(_:)), for: .touchUpInside)
+        
+        plusButton.addTarget(self, action: #selector(operationsPressed(_:)), for: .touchUpInside)
+        minusButton.addTarget(self, action: #selector(operationsPressed(_:)), for: .touchUpInside)
+        divideButton.addTarget(self, action: #selector(operationsPressed(_:)), for: .touchUpInside)
+        multiplyButton.addTarget(self, action: #selector(operationsPressed(_:)), for: .touchUpInside)
+        percentButton.addTarget(self, action: #selector(operationsPressed(_:)), for: .touchUpInside)
+        
+        equalsButton.addTarget(self, action: #selector(equalsButtonPressed), for: .touchUpInside)
+    }
+    
+    func setUpSenders() {
+        zeroButton.tag = 0
+        oneButton.tag = 1
+        twoButton.tag = 2
+        threeButton.tag = 3
+        fourButton.tag = 4
+        fiveButton.tag = 5
+        sixButton.tag = 6
+        sevenButton.tag = 7
+        eightButton.tag = 8
+        nineButton.tag = 9
+    }
+    
     func setUpButtonStyles() {
         Styling.styleNumberButton(button: sevenButton, symbol: "7")
         Styling.styleNumberButton(button: eightButton, symbol: "8")
@@ -72,18 +111,92 @@ class ViewController: UIViewController {
         
         
         Styling.styleOperationButtons(button: divideButton, symbol: "÷")
-        Styling.styleOperationButtons(button: multiplyButton, symbol: "X")
+        Styling.styleOperationButtons(button: multiplyButton, symbol: "x")
         Styling.styleOperationButtons(button: minusButton, symbol: "-")
         Styling.styleOperationButtons(button: plusButton, symbol: "+")
         Styling.styleOperationButtons(button: equalsButton, symbol: "=")
     
     }
     
+    func calculate() {
+        let arr = answerLabel.text!.components(separatedBy: " ")
+        var newArr: [Any] = []
+        var answer = 0.0
+        
+        for i in arr {
+            guard let num = Int(i) else {
+                newArr.append(i)
+                continue
+            }
+            newArr.append(num)
+        }
+        
+        for i in newArr {
+            
+            if let stringI = i as? String  {
+                if stringI == "+" {
+                    operation = .add
+                } else if stringI == "-" {
+                    operation = .subtract
+                } else if stringI == "x" {
+                    operation = .multiply
+                } else if stringI == "÷" {
+                    operation = .divide
+                } else if stringI == "%" {
+                    operation = .percent
+                }
+            }
+            
+            if let intI = i as? Double {
+                if operation == .none {
+                    answer = intI
+                } else if operation == .add {
+                    answer = answer + intI
+                } else if operation == .subtract {
+                    answer = answer - intI
+                } else if operation == .divide {
+                    answer = answer / intI
+                } else if operation == .multiply {
+                    answer = answer * intI
+                }
+            }
+            
+            
+            
+        }
+        
+        answerLabel.text = String(answer)
+        
+    }
+    
     //MARK: OBJC Functions
     
     @objc func numberPadPressed(_ sender: UIButton) {
+            answerLabel.text = answerLabel.text! + String(sender.tag)
         
     }
+    
+    @objc func operationsPressed(_ sender: UIButton) {
+        if sender.title(for: .normal) == "+" {
+            answerLabel.text = "\(answerLabel.text!) + "
+        } else if sender.title(for: .normal) == "-" {
+            answerLabel.text = "\(answerLabel.text!) - "
+        } else if sender.title(for: .normal) == "÷" {
+            answerLabel.text = "\(answerLabel.text!) ÷ "
+        } else if sender.title(for: .normal) == "x" {
+            answerLabel.text = "\(answerLabel.text!) x "
+        } else if sender.title(for: .normal) == "%" {
+            answerLabel.text = "\(answerLabel.text!) % "
+        }
+    }
+    
+    @objc func equalsButtonPressed() {
+        calculate()
+    }
+    
+    
+    
+    
     
     
     
